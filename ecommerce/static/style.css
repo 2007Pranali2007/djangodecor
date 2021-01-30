@@ -1,0 +1,8 @@
+body{
+  background-image: url(https://images.unsplash.com/photo-1494271823928-a80211877d80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8ZmxvcmFsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#navbarNav{
+  background-color: pink;
+}

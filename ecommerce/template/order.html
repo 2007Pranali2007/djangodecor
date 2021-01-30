@@ -1,0 +1,60 @@
+
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "style.css"%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    h1{
+    position:absolute;
+    top:-40px;
+    left:1px;
+    right:0px;
+    }
+    .jumbotron{
+        position:absolute;
+        left:300px;
+        right:300px;
+
+    }
+    .detail{
+        text-align: center;
+        position:absolute;
+        right:-70px;
+        left:30px;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+</style>
+    <title></title>
+  </head>
+  <body id="bg">
+
+   <div class="container">
+
+     <div class="jumbotron" style="background-color:#FFCBA4">
+         <div class="row">
+        <div class="col-md-10">
+          <b>
+           <form method="post">
+               <h1 class="detail">Order Details</h1><br>
+               <ul>
+                 <li>Fill all the fields correctly.</li>
+                 <li>Enter information must be correct.</li>
+                 <li>Enter mobile no or email id must be active state</li>
+              </ul>
+              {{form.as_p}}
+              {% csrf_token %}
+
+              <input type="submit" name="" class="btn btn-success" value="Submit">
+              <input type="reset" name="" class="btn btn-success" value="Reset">
+           </form>
+          </b>
+        </div>
+
+      </div>
+      </div>
+    </div>
+</body>
+</html>

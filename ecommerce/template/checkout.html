@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "style.css"%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+    .jumbotron{
+        position:absolute;
+        left:300px;
+        right:300px;
+
+    }
+    </style>
+  </head>
+  <body id="bg">
+    <center>
+
+   <div class="container">
+
+     <div class="jumbotron" style="background-color:#E55451">
+         <div class="row">
+        <div class="col-md-10">
+          <b>
+          <marquee direction="left"><h1><i><u>To order</u></i></h1></marquee>
+          <h3>Are you ready to order added cart items?</h3>
+          <h5>If yes,click on order button...!</h5>
+          <a href="order/" class="btn btn-success">Buy Now..!</a>
+        </b>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>

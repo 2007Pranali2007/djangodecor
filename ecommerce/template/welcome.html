@@ -1,0 +1,161 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "style.css"%}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body>
+  <div class="container">
+    <center><h1><font color="yellow">Decor's Items</font></h1></center>
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Category</a>
+              </li>
+              <li class="nav-item">
+                <button id="cart" type="button" data-html="true" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="This is My Cart">
+                  Cart
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <form class="card-body row">
+              <div class="col ">
+                <input type="search" name="item_name" value="" placeholder="Search">
+              </div>
+              <div class="col-auto">
+                <button type="search" name="button" class="btn btn-success">Search</button>
+              </div>
+
+
+            </form>
+          </div>
+
+        </div>
+    </div>
+      <div class="row">
+        {% for i in product_list %}
+        <div class="col-md-3">
+          <div class="card">
+            <img class="card-img-top" src="{{i.image}}" alt="Card image cap">
+            <div class="card-body">
+              <div class="card-title" id="name{{i.id}}">
+                <h2><i>{{i.name}}</i></h2>
+              </div>
+
+                <div class="card-title">
+                  <strike> <font color="red"><b>RS.{{i.price}}</b></font></strike>
+                </div>
+
+                  <div class="card-title">
+                    <font color="green"><b>RS.{{i.discounted_price}}</b></font>
+                  </div>
+              <div class="card-text">
+                {{i.description}}
+              </div>
+
+            </div>
+        <a href="/detail/{{i.pk}}" class="btn btn-primary">VIEW</a>&nbsp;
+        <button id="{{i.id}}" type="button" name="button" class="btn atc btn-primary">Add to cart</button>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+
+    </div>
+  </body>
+<script type="text/javascript">
+
+if(localStorage.getItem('cart')==null)
+{
+  var cart={}
+}
+else
+{
+  cart=JSON.parse(localStorage.getItem('cart'))
+}
+
+$(document).on('click','.atc',function()
+{
+   console.log("item is added to cart")
+   var id=this.id.toString()
+   console.log(id)
+
+
+
+if(cart[id]!=undefined)
+{
+  cart[id]=cart[id]+1
+
+}
+else
+{
+  cart[id]=1
+
+}
+console.log(cart)
+localStorage.setItem('cart',JSON.stringify(cart))
+
+
+
+document.getElementById('cart').innerHTML = Object.keys(cart).length
+
+
+})
+
+displayCart(cart)
+
+function displayCart(cart)
+{
+
+  var cartString="";
+  cartString += 'This is my cart'
+
+   for(var x in cart)//cart={1:2,4:6}
+   {
+     cartString = cartString+ document.getElementById('name'+x).innerHTML + cart[x] +"<br />"
+   }
+
+  cartString = cartString +"<a href='/order' class='btn btn-success'>Checkout</a>"
+  document.getElementById('cart').setAttribute('data-content',cartString)
+
+
+}
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+
+
+
+
+
+
+</script>
+
+</html>
